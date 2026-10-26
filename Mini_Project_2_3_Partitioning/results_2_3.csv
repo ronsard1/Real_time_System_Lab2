@@ -1,0 +1,21 @@
+set,heuristic,success,cores_used,per_core_U,per_core_bound,placed_U_pct_of_m,total_U_pct_of_m,unplaced,min_cores,lower_bound
+A balanced (16 small tasks),FF,True,4,0.725 / 0.725 / 0.725 / 0.150,0.743 / 0.743 / 0.743 / 1.000,58.1,58.1,,4,3
+A balanced (16 small tasks),FFD,True,4,0.630 / 0.740 / 0.705 / 0.250,0.757 / 0.743 / 0.743 / 0.828,58.1,58.1,,4,3
+A balanced (16 small tasks),BFD,True,4,0.630 / 0.740 / 0.705 / 0.250,0.757 / 0.743 / 0.743 / 0.828,58.1,58.1,,4,3
+A balanced (16 small tasks),WF,True,4,0.600 / 0.575 / 0.585 / 0.565,0.757 / 0.757 / 0.757 / 0.757,58.1,58.1,,4,3
+B skewed (3 large + 10 small),FF,True,4,0.730 / 0.730 / 0.750 / 0.180,0.780 / 0.780 / 0.757 / 0.780,59.8,59.8,,4,3
+B skewed (3 large + 10 small),FFD,True,4,0.750 / 0.730 / 0.730 / 0.180,0.780 / 0.780 / 0.757 / 0.780,59.8,59.8,,4,3
+B skewed (3 large + 10 small),BFD,True,4,0.750 / 0.730 / 0.730 / 0.180,0.780 / 0.780 / 0.757 / 0.780,59.8,59.8,,4,3
+B skewed (3 large + 10 small),WF,True,4,0.490 / 0.630 / 0.600 / 0.670,0.729 / 0.828 / 1.000 / 0.780,59.8,59.8,,4,3
+C tight (U near the core ceiling),FF,False,4,0.500 / 0.450 / 0.550 / 0.820,1.000 / 1.000 / 1.000 / 0.828,58.0,93.8,c5 c6 c8,7,4
+C tight (U near the core ceiling),FFD,False,4,0.550 / 0.500 / 0.500 / 0.480,1.000 / 1.000 / 1.000 / 1.000,50.8,93.8,c2 c6 c7 c4,7,4
+C tight (U near the core ceiling),BFD,False,4,0.550 / 0.500 / 0.500 / 0.480,1.000 / 1.000 / 1.000 / 1.000,50.8,93.8,c2 c6 c7 c4,7,4
+C tight (U near the core ceiling),WF,False,4,0.500 / 0.450 / 0.550 / 0.820,1.000 / 1.000 / 1.000 / 0.828,58.0,93.8,c5 c6 c8,8,4
+D adversarial: 5 tasks just over 0.5,FF,False,4,0.520 / 0.520 / 0.520 / 0.520,1.000 / 1.000 / 1.000 / 1.000,52.0,65.0,d5,5,3
+D adversarial: 5 tasks just over 0.5,FFD,False,4,0.520 / 0.520 / 0.520 / 0.520,1.000 / 1.000 / 1.000 / 1.000,52.0,65.0,d5,5,3
+D adversarial: 5 tasks just over 0.5,BFD,False,4,0.520 / 0.520 / 0.520 / 0.520,1.000 / 1.000 / 1.000 / 1.000,52.0,65.0,d5,5,3
+D adversarial: 5 tasks just over 0.5,WF,False,4,0.520 / 0.520 / 0.520 / 0.520,1.000 / 1.000 / 1.000 / 1.000,52.0,65.0,d5,5,3
+E adversarial order: small first,FF,False,4,0.400 / 0.600 / 0.600 / 0.600,0.724 / 1.000 / 1.000 / 1.000,55.0,70.0,e12,5,3
+E adversarial order: small first,FFD,True,4,0.750 / 0.750 / 0.700 / 0.600,0.757 / 0.757 / 0.780 / 1.000,70.0,70.0,,4,3
+E adversarial order: small first,BFD,True,4,0.750 / 0.750 / 0.700 / 0.600,0.757 / 0.757 / 0.780 / 1.000,70.0,70.0,,4,3
+E adversarial order: small first,WF,True,4,0.700 / 0.700 / 0.700 / 0.700,0.780 / 0.780 / 0.780 / 0.780,70.0,70.0,,4,3

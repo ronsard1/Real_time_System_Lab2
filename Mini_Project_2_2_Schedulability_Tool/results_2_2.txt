@@ -1,0 +1,124 @@
+==========================================================================
+set1_section_2_2_2  (3 tasks, implicit deadlines, hyperperiod 12)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+t1          1     4     4   0.2500
+t2          2     6     6   0.3333
+t3          2    12    12   0.1667
+Total U = 0.7500   L&L bound n(2^(1/n)-1) = 0.7798   bound test: PASS
+RM verdict : SCHEDULABLE (utilization bound)
+EDF verdict: SCHEDULABLE (exact, U <= 1)
+==========================================================================
+set2_section_2_3_2  (4 tasks, implicit deadlines, hyperperiod 24)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+t1          1     4     4   0.2500
+t2          2     6     6   0.3333
+t3          2    12    12   0.1667
+t4          1     8     8   0.1250
+Total U = 0.8750   L&L bound n(2^(1/n)-1) = 0.7568   bound test: FAIL
+RTA (RM priority order):
+   t1     R =    1  D =    4  iterations =  1  OK   trace [1, 1]
+   t2     R =    3  D =    6  iterations =  2  OK   trace [2, 3, 3]
+   t4     R =    4  D =    8  iterations =  2  OK   trace [1, 4, 4]
+   t3     R =   11  D =   12  iterations =  5  OK   trace [2, 6, 7, 9, 11, 11]
+RM verdict : SCHEDULABLE (exact, RTA)
+EDF verdict: SCHEDULABLE (exact, U <= 1)
+==========================================================================
+set3_overload_U_gt_1  (3 tasks, implicit deadlines, hyperperiod 24)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+a           2     4     4   0.5000
+b           3     6     6   0.5000
+c           2     8     8   0.2500
+Total U = 1.2500   L&L bound n(2^(1/n)-1) = 0.7798   bound test: FAIL
+RTA (RM priority order):
+   a      R =    2  D =    4  iterations =  1  OK   trace [2, 2]
+   b      R =    7  D =    6  iterations =  2  MISS   trace [3, 5, 7]
+   c      R =   12  D =    8  iterations =  2  MISS   trace [2, 7, 12]
+RM verdict : INFEASIBLE (U > 1)
+EDF verdict: INFEASIBLE (U > 1)
+==========================================================================
+set4_constrained_deadline  (3 tasks, constrained deadlines, hyperperiod 12)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+a           1     4     3   0.2500
+b           2     6     4   0.3333
+c           3    12    10   0.2500
+Total U = 0.8333   L&L bound n(2^(1/n)-1) = 0.7798   bound not applicable (D < T)
+RTA (DM priority order):
+   a      R =    1  D =    3  iterations =  1  OK   trace [1, 1]
+   b      R =    3  D =    4  iterations =  2  OK   trace [2, 3, 3]
+   c      R =   10  D =   10  iterations =  5  OK   trace [3, 6, 7, 9, 10, 10]
+DM verdict : SCHEDULABLE (exact, RTA)
+EDF verdict: SCHEDULABLE (exact, processor demand)
+==========================================================================
+set5_ten_tasks  (10 tasks, implicit deadlines, hyperperiod 200)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+t1          1    10    10   0.1000
+t2          2    20    20   0.1000
+t3          2    25    25   0.0800
+t4          3    40    40   0.0750
+t5          4    50    50   0.0800
+t6          8   100   100   0.0800
+t7          2    20    20   0.1000
+t8          3    25    25   0.1200
+t9          2    40    40   0.0500
+t10         5   100   100   0.0500
+Total U = 0.8350   L&L bound n(2^(1/n)-1) = 0.7177   bound test: FAIL
+RTA (RM priority order):
+   t1     R =    1  D =   10  iterations =  1  OK   trace [1, 1]
+   t2     R =    3  D =   20  iterations =  2  OK   trace [2, 3, 3]
+   t7     R =    5  D =   20  iterations =  2  OK   trace [2, 5, 5]
+   t3     R =    7  D =   25  iterations =  2  OK   trace [2, 7, 7]
+   t8     R =   10  D =   25  iterations =  2  OK   trace [3, 10, 10]
+   t4     R =   14  D =   40  iterations =  3  OK   trace [3, 13, 14, 14]
+   t9     R =   16  D =   40  iterations =  3  OK   trace [2, 15, 16, 16]
+   t5     R =   20  D =   50  iterations =  3  OK   trace [4, 19, 20, 20]
+   t6     R =   39  D =  100  iterations =  4  OK   trace [8, 27, 38, 39, 39]
+   t10    R =   69  D =  100  iterations =  6  OK   trace [5, 32, 44, 54, 64, 69, 69]
+RM verdict : SCHEDULABLE (exact, RTA)
+EDF verdict: SCHEDULABLE (exact, U <= 1)
+==========================================================================
+set6_full_utilization  (3 tasks, implicit deadlines, hyperperiod 24)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+tX          3     8     8   0.3750
+tY          3     8     8   0.3750
+tZ          3    12    12   0.2500
+Total U = 1.0000   L&L bound n(2^(1/n)-1) = 0.7798   bound test: FAIL
+RTA (RM priority order):
+   tX     R =    3  D =    8  iterations =  1  OK   trace [3, 3]
+   tY     R =    6  D =    8  iterations =  2  OK   trace [3, 6, 6]
+   tZ     R =   15  D =   12  iterations =  2  MISS   trace [3, 9, 15]
+RM verdict : NOT SCHEDULABLE (RTA: tZ misses)
+EDF verdict: SCHEDULABLE (exact, U <= 1)
+==========================================================================
+set7_constrained_infeasible  (2 tasks, constrained deadlines, hyperperiod 12)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+a           2     4     2   0.5000
+b           2     6     3   0.3333
+Total U = 0.8333   L&L bound n(2^(1/n)-1) = 0.8284   bound not applicable (D < T)
+RTA (DM priority order):
+   a      R =    2  D =    2  iterations =  1  OK   trace [2, 2]
+   b      R =    4  D =    3  iterations =  1  MISS   trace [2, 4]
+DM verdict : NOT SCHEDULABLE (RTA: b misses)
+EDF verdict: NOT SCHEDULABLE (dbf(3) > 3)
+==========================================================================
+set8_harmonic_reflection  (4 tasks, implicit deadlines, hyperperiod 16)
+--------------------------------------------------------------------------
+task        C     T     D      u_i
+t1          1     4     4   0.2500
+t2          2     8     8   0.2500
+t3          4    16    16   0.2500
+t4          3    16    16   0.1875
+Total U = 0.9375   L&L bound n(2^(1/n)-1) = 0.7568   bound test: FAIL
+RTA (RM priority order):
+   t1     R =    1  D =    4  iterations =  1  OK   trace [1, 1]
+   t2     R =    3  D =    8  iterations =  2  OK   trace [2, 3, 3]
+   t3     R =    8  D =   16  iterations =  3  OK   trace [4, 7, 8, 8]
+   t4     R =   15  D =   16  iterations =  4  OK   trace [3, 10, 14, 15, 15]
+RM verdict : SCHEDULABLE (exact, RTA)
+EDF verdict: SCHEDULABLE (exact, U <= 1)

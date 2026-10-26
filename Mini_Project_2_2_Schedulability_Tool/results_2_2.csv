@@ -1,0 +1,9 @@
+set,n,U,bound,deadlines,bound_test,fixed_priority,fp_verdict,edf_verdict,max_R_over_D,sim_fp_misses,sim_edf_misses,fp_switches,edf_switches,agree
+set1_section_2_2_2,3,0.75,0.7798,implicit,pass,RM,SCHEDULABLE (utilization bound),"SCHEDULABLE (exact, U <= 1)",,0,0,7,7,True
+set2_section_2_3_2,4,0.875,0.7568,implicit,fail,RM,"SCHEDULABLE (exact, RTA)","SCHEDULABLE (exact, U <= 1)",0.9166666666666666,0,0,17,17,True
+set3_overload_U_gt_1,3,1.25,0.7798,implicit,fail,RM,INFEASIBLE (U > 1),INFEASIBLE (U > 1),1.5,5,8,14,11,True
+set4_constrained_deadline,3,0.8333,0.7798,constrained,n/a,DM,"SCHEDULABLE (exact, RTA)","SCHEDULABLE (exact, processor demand)",1.0,0,0,8,8,True
+set5_ten_tasks,10,0.835,0.7177,implicit,fail,RM,"SCHEDULABLE (exact, RTA)","SCHEDULABLE (exact, U <= 1)",0.69,0,0,77,77,True
+set6_full_utilization,3,1.0,0.7798,implicit,fail,RM,NOT SCHEDULABLE (RTA: tZ misses),"SCHEDULABLE (exact, U <= 1)",1.25,1,0,10,9,True
+set7_constrained_infeasible,2,0.8333,0.8284,constrained,n/a,DM,NOT SCHEDULABLE (RTA: b misses),NOT SCHEDULABLE (dbf(3) > 3),1.3333333333333333,1,1,5,5,True
+set8_harmonic_reflection,4,0.9375,0.7568,implicit,fail,RM,"SCHEDULABLE (exact, RTA)","SCHEDULABLE (exact, U <= 1)",0.9375,0,0,10,10,True

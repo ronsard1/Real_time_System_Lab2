@@ -1,0 +1,55 @@
+m = 4 cores; admission: load + u <= rm_bound(n + 1) on the core
+==============================================================================
+A balanced (16 small tasks): n = 16, U = 2.325 (58.1% of m), max u_i = 0.160, lower bound ceil(U) = 3 cores
+  FF   OK   cores used 4  per-core U ['0.725', '0.725', '0.725', '0.150'] (n [5, 5, 5, 1])  placed U 2.325 = 58.1% of m  unplaced []  min cores needed 4
+  FFD  OK   cores used 4  per-core U ['0.630', '0.740', '0.705', '0.250'] (n [4, 5, 5, 2])  placed U 2.325 = 58.1% of m  unplaced []  min cores needed 4
+  BFD  OK   cores used 4  per-core U ['0.630', '0.740', '0.705', '0.250'] (n [4, 5, 5, 2])  placed U 2.325 = 58.1% of m  unplaced []  min cores needed 4
+  WF   OK   cores used 4  per-core U ['0.600', '0.575', '0.585', '0.565'] (n [4, 4, 4, 4])  placed U 2.325 = 58.1% of m  unplaced []  min cores needed 4
+==============================================================================
+B skewed (3 large + 10 small): n = 13, U = 2.390 (59.8% of m), max u_i = 0.600, lower bound ceil(U) = 3 cores
+  FF   OK   cores used 4  per-core U ['0.730', '0.730', '0.750', '0.180'] (n [3, 3, 4, 3])  placed U 2.390 = 59.8% of m  unplaced []  min cores needed 4
+  FFD  OK   cores used 4  per-core U ['0.750', '0.730', '0.730', '0.180'] (n [3, 3, 4, 3])  placed U 2.390 = 59.8% of m  unplaced []  min cores needed 4
+  BFD  OK   cores used 4  per-core U ['0.750', '0.730', '0.730', '0.180'] (n [3, 3, 4, 3])  placed U 2.390 = 59.8% of m  unplaced []  min cores needed 4
+  WF   OK   cores used 4  per-core U ['0.490', '0.630', '0.600', '0.670'] (n [7, 2, 1, 3])  placed U 2.390 = 59.8% of m  unplaced []  min cores needed 4
+==============================================================================
+C tight (U near the core ceiling): n = 8, U = 3.750 (93.8% of m), max u_i = 0.550, lower bound ceil(U) = 4 cores
+  FF   FAIL cores used 4  per-core U ['0.500', '0.450', '0.550', '0.820'] (n [1, 1, 1, 2])  placed U 2.320 = 58.0% of m  unplaced ['c5', 'c6', 'c8']  min cores needed 7
+  FFD  FAIL cores used 4  per-core U ['0.550', '0.500', '0.500', '0.480'] (n [1, 1, 1, 1])  placed U 2.030 = 50.8% of m  unplaced ['c2', 'c6', 'c7', 'c4']  min cores needed 7
+  BFD  FAIL cores used 4  per-core U ['0.550', '0.500', '0.500', '0.480'] (n [1, 1, 1, 1])  placed U 2.030 = 50.8% of m  unplaced ['c2', 'c6', 'c7', 'c4']  min cores needed 7
+  WF   FAIL cores used 4  per-core U ['0.500', '0.450', '0.550', '0.820'] (n [1, 1, 1, 2])  placed U 2.320 = 58.0% of m  unplaced ['c5', 'c6', 'c8']  min cores needed 8
+==============================================================================
+D adversarial: 5 tasks just over 0.5: n = 5, U = 2.600 (65.0% of m), max u_i = 0.520, lower bound ceil(U) = 3 cores
+  FF   FAIL cores used 4  per-core U ['0.520', '0.520', '0.520', '0.520'] (n [1, 1, 1, 1])  placed U 2.080 = 52.0% of m  unplaced ['d5']  min cores needed 5
+  FFD  FAIL cores used 4  per-core U ['0.520', '0.520', '0.520', '0.520'] (n [1, 1, 1, 1])  placed U 2.080 = 52.0% of m  unplaced ['d5']  min cores needed 5
+  BFD  FAIL cores used 4  per-core U ['0.520', '0.520', '0.520', '0.520'] (n [1, 1, 1, 1])  placed U 2.080 = 52.0% of m  unplaced ['d5']  min cores needed 5
+  WF   FAIL cores used 4  per-core U ['0.520', '0.520', '0.520', '0.520'] (n [1, 1, 1, 1])  placed U 2.080 = 52.0% of m  unplaced ['d5']  min cores needed 5
+==============================================================================
+E adversarial order: small first: n = 12, U = 2.800 (70.0% of m), max u_i = 0.600, lower bound ceil(U) = 3 cores
+  FF   FAIL cores used 4  per-core U ['0.400', '0.600', '0.600', '0.600'] (n [8, 1, 1, 1])  placed U 2.200 = 55.0% of m  unplaced ['e12']  min cores needed 5
+  FFD  OK   cores used 4  per-core U ['0.750', '0.750', '0.700', '0.600'] (n [4, 4, 3, 1])  placed U 2.800 = 70.0% of m  unplaced []  min cores needed 4
+  BFD  OK   cores used 4  per-core U ['0.750', '0.750', '0.700', '0.600'] (n [4, 4, 3, 1])  placed U 2.800 = 70.0% of m  unplaced []  min cores needed 4
+  WF   OK   cores used 4  per-core U ['0.700', '0.700', '0.700', '0.700'] (n [3, 3, 3, 3])  placed U 2.800 = 70.0% of m  unplaced []  min cores needed 4
+==============================================================================
+Per-core RM simulation of set B under FFD over H = 100 ms
+  core 1: b3(6/10), b4(1/10), b1(1/20)  U = 0.750  misses = 0  max response = {b3: 6, b4: 7, b1: 8}
+  core 2: b6(11/20), b10(1/10), b2(2/25)  U = 0.730  misses = 0  max response = {b6: 13, b10: 1, b2: 15}
+  core 3: b9(13/25), b5(2/25), b8(2/25), b7(1/20)  U = 0.730  misses = 0  max response = {b9: 14, b5: 16, b8: 18, b7: 1}
+  core 4: b12(2/25), b11(1/20), b13(1/20)  U = 0.180  misses = 0  max response = {b12: 4, b11: 1, b13: 2}
+  every core meets every deadline: True
+==============================================================================
+Acceptance ratio, 12 UUniFast tasks, 400 sets per point, m = 4
+  U           FF     FFD     BFD      WF
+  1.0      1.000   1.000   1.000   1.000
+  1.2      1.000   1.000   1.000   1.000
+  1.4      1.000   1.000   1.000   0.998
+  1.6      1.000   1.000   1.000   0.990
+  1.8      1.000   1.000   1.000   0.925
+  2.0      1.000   1.000   1.000   0.843
+  2.2      1.000   1.000   1.000   0.723
+  2.4      1.000   1.000   1.000   0.557
+  2.6      0.983   1.000   1.000   0.347
+  2.8      0.915   1.000   1.000   0.133
+  3.0      0.458   0.980   0.980   0.035
+  3.2      0.052   0.138   0.135   0.005
+  3.4      0.000   0.000   0.000   0.000
+results written to results_2_3.csv, results_2_3_acceptance.csv; figures to /home/claude/Real_time_System_Lab2/Mini_Project_2_3_Partitioning/figures

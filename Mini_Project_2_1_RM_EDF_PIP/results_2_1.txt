@@ -1,0 +1,71 @@
+========================================================================
+Steps 2-3: utilization and bounds
+========================================================================
+Section 2.2.2 three-task set
+   t1: C=1, T=4, u=0.2500
+   t2: C=2, T=6, u=0.3333
+   t3: C=2, T=12, u=0.1667
+   U = 0.750   rm_bound(3) = 0.780   RM sufficient test: PASS   EDF U <= 1: PASS
+Section 2.3.2 four-task set (t4 added)
+   t1: C=1, T=4, u=0.2500
+   t2: C=2, T=6, u=0.3333
+   t3: C=2, T=12, u=0.1667
+   t4: C=1, T=8, u=0.1250
+   U = 0.875   rm_bound(4) = 0.757   RM sufficient test: INCONCLUSIVE (U > bound)   EDF U <= 1: PASS
+------------------------------------------------------------------------
+Steps 4-6: simulation over one hyperperiod H = 24 ms
+  RM  timeline: 12241322143.1223142213..
+  EDF timeline: 12241322134.1223142213..
+  RM : misses=0, context switches=17, preemptions=2
+  EDF: misses=0, context switches=17, preemptions=2
+  worst observed response t1: RM 1  EDF 1
+  worst observed response t2: RM 3  EDF 3
+  worst observed response t3: RM 11  EDF 10
+  worst observed response t4: RM 4  EDF 4
+------------------------------------------------------------------------
+Step 7: Response Time Analysis (RM priorities)
+  t1: iterations [1, 1] -> R = 1, D = 4, schedulable
+  t2: iterations [2, 3, 3] -> R = 3, D = 6, schedulable
+  t4: iterations [1, 4, 4] -> R = 4, D = 8, schedulable
+  t3: iterations [2, 6, 7, 9, 11, 11] -> R = 11, D = 12, schedulable
+------------------------------------------------------------------------
+Steps 8-10: priority inversion and the Priority Inheritance Protocol
+  no protocol: H finishes at t=12, H blocked 9 ticks, M finishes at t=6, L finishes at t=10
+  PIP        : H finishes at t=8, H blocked 5 ticks, M finishes at t=12, L finishes at t=6
+  Bound (one critical section of L, Section 2.7.1) = 6 ticks; remaining part after H arrives = 5 ticks
+========================================================================
+Lab task 1: Deadline Monotonic versus Rate Monotonic
+  implicit-deadline set (D = T): DM schedule identical to RM? True
+  constrained set: tA(C=1,T=5,D=5) tB(C=2,T=8,D=2) tC(C=1,T=10,D=10)
+  RM priority order: ['tA', 'tB', 'tC']  misses=2
+  DM priority order: ['tB', 'tA', 'tC']  misses=0
+  RTA under RM: tA R=1/D=5, tB R=3/D=2, tC R=4/D=10
+  RTA under DM: tB R=2/D=2, tA R=3/D=5, tC R=4/D=10
+  first tick where the RM and DM schedules differ: t=0
+Lab task 2: rm_bound(n) for n = 1..10
+  n= 1  bound=1.0000
+  n= 2  bound=0.8284
+  n= 3  bound=0.7798
+  n= 4  bound=0.7568
+  n= 5  bound=0.7435
+  n= 6  bound=0.7348
+  n= 7  bound=0.7286
+  n= 8  bound=0.7241
+  n= 9  bound=0.7205
+  n=10  bound=0.7177
+  ln 2 = 0.6931
+Lab task 3: context switches over one hyperperiod (RM, EDF, LLF)
+  four-task set (U=0.875)            RM   dispatches= 17 preemptions=  2 misses=0  12241322143.1223142213..
+  four-task set (U=0.875)            EDF  dispatches= 17 preemptions=  2 misses=0  12241322134.1223142213..
+  four-task set (U=0.875)            LLF  dispatches= 17 preemptions=  2 misses=0  12241322134.1223142213..
+  tX(3,8) tY(3,8) tZ(3,12) (U=1.0)   RM   dispatches= 10 preemptions=  2 misses=1  XXXYYYZZXXXYYYZZXXXYYYZZ
+  tX(3,8) tY(3,8) tZ(3,12) (U=1.0)   EDF  dispatches=  9 preemptions=  1 misses=0  XXXYYYZZZXXXYYYZXXXYYYZZ
+  tX(3,8) tY(3,8) tZ(3,12) (U=1.0)   LLF  dispatches= 22 preemptions= 14 misses=0  XYXYXYZZZXYXYXYZXYXYZXYZ
+Lab task 4: a second medium-priority task M2 arrives during M
+  no protocol: H blocked 12 ticks (was 9); PIP: H blocked 5 ticks (was 5)
+========================================================================
+Step 10: blocking of H
+scenario                           no protocol     PIP   bound
+H, M, L (Section 2.6.1)                      9       5       6
+H, M, M2, L (lab task 4)                    12       5       6
+Figures written to /home/claude/Real_time_System_Lab2/Mini_Project_2_1_RM_EDF_PIP/figures
